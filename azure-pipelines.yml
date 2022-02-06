@@ -37,7 +37,7 @@ stages:
   - stage: RunBot
     displayName: RunBot from Orch
     dependsOn: DeployDEV
-    condition: succeeded()
+    condition: succeededOrFailed()
     jobs:
       - job: RunBot
         pool: Prince
