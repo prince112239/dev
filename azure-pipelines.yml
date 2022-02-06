@@ -28,6 +28,7 @@ stages:
         displayName: Deploy package to DEV Orchestrator
         pool: Prince
         environment: DEV
+        steps:
             - task: UiPathDeploy@2
               inputs:
                 orchestratorConnection: 'ConnectFin'
