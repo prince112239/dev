@@ -19,7 +19,7 @@ stages:
       - publish: $(projectPackagePath)
         artifact: drop
         
-- stage: DeployDEV
+  - stage: DeployDEV
     displayName: Deploy build artifact to DEV
     dependsOn: Build
     condition: succeeded()
@@ -28,10 +28,6 @@ stages:
         displayName: Deploy package to DEV Orchestrator
         pool: Prince
         environment: DEV
-        strategy:
-         runOnce:
-          deploy:
-           steps:
             - task: UiPathDeploy@2
               inputs:
                 orchestratorConnection: 'ConnectFin'
