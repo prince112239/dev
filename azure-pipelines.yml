@@ -37,7 +37,7 @@ stages:
   - stage: Run
     displayName: Run
     dependsOn: Build
-    condition: suceeded()
+    condition: succeeded()
     jobs:
       - job: Run
         pool: Prince
