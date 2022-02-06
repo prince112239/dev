@@ -24,15 +24,12 @@ stages:
     dependsOn: Build
     condition: succeeded()
     jobs:
-      - deployment: deployDEV
-        displayName: Deploy package to DEV Orchestrator
-        pool: Prince
-        environment: DEV
-        steps:
-            - task: UiPathDeploy@2
-              inputs:
-                orchestratorConnection: 'ConnectFin'
-                packagesPath: '$(projectPackagePath)'
-                folderName: 'Shared'
-                entryPoints: 'Main.xaml'
-                traceLevel: 'Verbose'
+     - job: Deploy
+       pool: Prince
+       steps:
+       - task: UiPathDeploy@2
+         inputs:
+          orchestratorConnection: 'ConnectFin'
+          packagesPath: '$(projectPackagePath)'
+          folderName: 'Shared'
+          entryPoints: 'Main.xaml'
