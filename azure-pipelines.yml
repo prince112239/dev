@@ -1,7 +1,6 @@
 trigger:
   - master
-variables:
-  - group: DEV
+
 
 stages:
   - stage: Build
@@ -13,7 +12,7 @@ stages:
       - task: UiPathPack@2
         inputs:
           versionType: 'AutoVersion'
-          projectJsonPath: '$(Build.SourcesDirectory)\project.json'
+          projectJsonPath: '\project.json'
           outputType: 'Process'
           orchestratorConnection: 'UiPath DEV'
           outputPath: '$(Build.ArtifactStagingDirectory)'
