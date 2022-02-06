@@ -33,3 +33,23 @@ stages:
           packagesPath: '$(projectPackagePath)'
           folderName: 'Shared'
           entryPoints: 'Main.xaml'
+
+  - stage: Run
+    displayName: Run
+    dependsOn: Build
+    condition: suceeded()
+    jobs:
+      - job: Run
+        pool: Prince
+        steps:
+        - task: UiPathRunJob@2
+          inputs:
+            orchestratorConnection: 'ConnectFin'
+            processName: 'cicdpipeline'
+            folderName: 'Shared'
+            user: 'desktop-4m969hi\prince'
+            machine: 'local machines'
+            resultFilePath: '$(projectPackagePath)'
+            traceLevel: 'Verbose'
+        
+          
