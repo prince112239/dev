@@ -34,8 +34,10 @@ stages:
            steps:
             - task: UiPathDeploy@2
               inputs:
-                orchestratorConnection: 'UiPath DEV'
-                packagesPath: '$(Pipeline.Workspace)\drop\'
+                orchestratorConnection: 'ConnectFin'
+                packagesPath: '$(projectPackagePath)'
                 folderName: 'Shared'
+                entryPoints: 'Main.xaml'
+                traceLevel: 'Verbose'
                 
   
