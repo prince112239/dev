@@ -34,12 +34,12 @@ stages:
           folderName: 'Shared'
           entryPoints: 'Main.xaml'
 
-  - stage: Run
-    displayName: Run
-    dependsOn: Build
+  - stage: RunBot
+    displayName: RunBot from Orch
+    dependsOn: DeployDEV
     condition: succeeded()
     jobs:
-      - job: Run
+      - job: RunBot
         pool: Prince
         steps:
         - task: UiPathRunJob@2
@@ -48,7 +48,7 @@ stages:
             processName: 'cicdpipeline'
             folderName: 'Shared'
             user: 'desktop-4m969hi\prince'
-            machine: 'local machines'
+            machine: 'desktop-4m969hi'
             resultFilePath: '$(projectPackagePath)'
             traceLevel: 'Verbose'
         
