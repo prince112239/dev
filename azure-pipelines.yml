@@ -26,7 +26,7 @@ stages:
     jobs:
       - deployment: deployDEV
         displayName: Deploy package to DEV Orchestrator
-        pool: LAPTOP-Q338O4FK
+        pool: Prince
         environment: DEV
         strategy:
          runOnce:
@@ -39,5 +39,3 @@ stages:
                 folderName: 'Shared'
                 entryPoints: 'Main.xaml'
                 traceLevel: 'Verbose'
-                
-  
