@@ -17,7 +17,7 @@ stages:
           orchestratorConnection: 'ConnectFin'
           outputPath: $(Build.ArtifactStagingDirectory)\Output
       - publish: $(Build.ArtifactStagingDirectory)\Output
-        #artifact: drop
+        artifact: drop
       
         
   - stage: DeployDEV
@@ -31,7 +31,7 @@ stages:
        - task: UiPathDeploy@2
          inputs:
           orchestratorConnection: 'ConnectFin'
-          packagesPath: $(Build.ArtifactStagingDirectory)
+          packagesPath: $(Build.ArtifactStagingDirectory)\Output
           folderName: 'Shared'
           entryPoints: 'Main.xaml'
 
