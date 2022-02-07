@@ -15,12 +15,10 @@ stages:
           projectJsonPath: '$(Build.SourcesDirectory)\project.json'
           outputType: 'Process'
           orchestratorConnection: 'ConnectFin'
-          outputPath: $(Build.ArtifactStagingDirectory)
+          outputPath: $(Build.ArtifactStagingDirectory)\Output
+      - publish: $(Build.ArtifactStagingDirectory)\Output
+        artifact: drop
       
-      - task: CopyFiles@2
-        inputs:
-          TargetFolder: $(Build.ArtifactStagingDirectory)
-          CleanTargetFolder: true
         
   - stage: DeployDEV
     displayName: Deploy build artifact to DEV
