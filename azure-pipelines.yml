@@ -39,6 +39,34 @@ stages:
           folderName: 'Shared'
           entryPoints: 'Main.xaml'
 
- 
+  - stage: QARun
+    displayName: RunQA
+    dependsOn: DeployDEV
+    condition: succeeded()
+    jobs:
+      - job: RunBot
+        pool: Prince
+        steps:
+          - task: UiPathTest@2
+            inputs:
+              testTarget: 'TestSet'
+              orchestratorConnection: 'ConnectFin'
+              testSet: 'TestSet1'
+              folderName: 'Shared'
+              traceLevel: 'Verbose'
         
+  - stage: DeployPROD
+    displayName: Deploy build artifact to PROD
+    dependsOn: QARun
+    condition: succeeded()
+    jobs:
+     - job: Deploy
+       pool: Prince
+       steps:
+       - task: UiPathDeploy@2
+         inputs:
+          orchestratorConnection: 'ConnectFin'
+          packagesPath: $(projectPackagePath)
+          folderName: 'Prod'
+          entryPoints: 'Main.xaml'     
           
