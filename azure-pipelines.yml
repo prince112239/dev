@@ -17,7 +17,10 @@ stages:
           orchestratorConnection: 'ConnectFin'
           outputPath: $(Build.ArtifactStagingDirectory)
       - publish: $(Build.ArtifactStagingDirectory)
-        
+      - task: CopyFiles@2
+        inputs:
+          TargetFolder: $(Build.ArtifactStagingDirectory)
+          CleanTargetFolder: true
         
   - stage: DeployDEV
     displayName: Deploy build artifact to DEV
