@@ -17,7 +17,7 @@ stages:
           orchestratorConnection: 'ConnectFin'
           outputPath: $(Build.ArtifactStagingDirectory)\Output
       - publish: $(Build.ArtifactStagingDirectory)\Output
-        artifact: drop
+        #artifact: drop
       
         
   - stage: DeployDEV
