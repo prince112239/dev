@@ -36,7 +36,7 @@ stages:
          inputs:
           orchestratorConnection: 'ConnectFin'
           packagesPath: $(projectPackagePath)
-          folderName: 'Shared'
+          folderName: 'Prod'
           entryPoints: 'Main.xaml'
 
   - stage: QARun
