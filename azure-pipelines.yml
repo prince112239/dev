@@ -18,7 +18,11 @@ stages:
           outputPath: $(Build.ArtifactStagingDirectory)\Output
       - publish: $(Build.ArtifactStagingDirectory)\Output
         artifact: drop
-      
+      - task: CopyFiles@2
+        inputs:
+         sourceFolder: $(Build.ArtifactStagingDirectory)\Output
+         targetFolder: $(projectPackagePath)
+         CleanTargetFolder: True
         
   - stage: DeployDEV
     displayName: Deploy build artifact to DEV
@@ -31,26 +35,10 @@ stages:
        - task: UiPathDeploy@2
          inputs:
           orchestratorConnection: 'ConnectFin'
-          packagesPath: $(Build.ArtifactStagingDirectory)\Output
+          packagesPath: $(projectPackagePath)
           folderName: 'Shared'
           entryPoints: 'Main.xaml'
 
-  - stage: RunBot
-    displayName: RunBot from Orch
-    dependsOn: DeployDEV
-    condition: succeededOrFailed()
-    jobs:
-      - job: RunBot
-        pool: Prince
-        steps:
-        - task: UiPathRunJob@2
-          inputs:
-            orchestratorConnection: 'ConnectFin'
-            processName: 'cicdpipeline'
-            folderName: 'Shared'
-            user: 'desktop-4m969hi\prince'
-            machine: 'desktop-4m969hi'
-            resultFilePath: '$(projectPackagePath)'
-            traceLevel: 'Verbose'
+ 
         
           
