@@ -12,11 +12,11 @@ stages:
       - task: UiPathPack@2
         inputs:
           versionType: 'AutoVersion'
-          projectJsonPath: $(projectPath)
+          projectJsonPath: '$(Build.SourcesDirectory)\project.json'
           outputType: 'Process'
           orchestratorConnection: 'ConnectFin'
-          outputPath: $(projectPackagePath)
-      - publish: $(projectPackagePath)
+          outputPath: $(Build.ArtifactStagingDirectory)
+      - publish: $(Build.ArtifactStagingDirectory)
         artifact: drop
         
   - stage: DeployDEV
@@ -30,7 +30,7 @@ stages:
        - task: UiPathDeploy@2
          inputs:
           orchestratorConnection: 'ConnectFin'
-          packagesPath: '$(projectPackagePath)'
+          packagesPath: $(Build.ArtifactStagingDirectory)
           folderName: 'Shared'
           entryPoints: 'Main.xaml'
 
