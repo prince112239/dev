@@ -6,13 +6,14 @@
     "UiPath.Excel.Activities": "[2.11.4]",
     "UiPath.Mail.Activities": "[1.12.2]",
     "UiPath.System.Activities": "[21.10.2]",
+    "UiPath.Testing.Activities": "[1.4.6]",
     "UiPath.UIAutomation.Activities": "[21.10.3]"
   },
   "webServices": [],
   "entitiesStores": [],
   "schemaVersion": "4.0",
   "studioVersion": "21.10.3.0",
-  "projectVersion": "1.0.0",
+  "projectVersion": "1.0.97951067",
   "runtimeOptions": {
     "autoDispose": false,
     "isPausable": true,
@@ -38,7 +39,13 @@
     "processOptions": {
       "ignoredFiles": []
     },
-    "fileInfoCollection": [],
+    "fileInfoCollection": [
+      {
+        "editingStatus": "Publishable",
+        "testCaseId": "a1baef19-77d9-4d45-93a2-b01460f198f7",
+        "fileName": "TestCase_Sum.xaml"
+      }
+    ],
     "modernBehavior": false
   },
   "expressionLanguage": "VisualBasic",
