@@ -29,7 +29,7 @@ stages:
     dependsOn: Build
     condition: succeeded()
     jobs:
-     - job: Deploy
+     - job: DeployDev
        pool: Prince
        steps:
        - task: UiPathDeploy@2
@@ -60,7 +60,7 @@ stages:
     dependsOn: QARun
     condition: succeeded()
     jobs:
-     - job: Deploy
+     - job: DeployPROD
        pool: Prince
        steps:
        - task: UiPathDeploy@2
