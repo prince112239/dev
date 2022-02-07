@@ -16,7 +16,7 @@ stages:
           outputType: 'Process'
           orchestratorConnection: 'ConnectFin'
           outputPath: $(Build.ArtifactStagingDirectory)
-      - publish: $(Build.ArtifactStagingDirectory)
+      
       - task: CopyFiles@2
         inputs:
           TargetFolder: $(Build.ArtifactStagingDirectory)
