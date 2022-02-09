@@ -24,12 +24,12 @@ stages:
          targetFolder: $(projectPackagePath)
          CleanTargetFolder: True
         
-  - stage: DeployDEV
-    displayName: Deploy build artifact to DEV
+  - stage: DeployQA
+    displayName: Deploy build artifact to QA
     dependsOn: Build
     condition: succeeded()
     jobs:
-     - job: DeployDev
+     - job: DeployQA
        pool: Prince
        steps:
        - task: UiPathDeploy@2
@@ -41,7 +41,7 @@ stages:
 
   - stage: QARun
     displayName: RunQA
-    dependsOn: DeployDEV
+    dependsOn: DeployQA
     condition: succeeded()
     jobs:
       - job: RunBot
@@ -55,18 +55,5 @@ stages:
               folderName: 'Shared'
               traceLevel: 'Verbose'
         
-  - stage: DeployPROD
-    displayName: Deploy build artifact to PROD
-    dependsOn: QARun
-    condition: succeeded()
-    jobs:
-     - job: DeployPROD
-       pool: Prince
-       steps:
-       - task: UiPathDeploy@2
-         inputs:
-          orchestratorConnection: 'ConnectHR'
-          packagesPath: $(projectPackagePath)
-          folderName: 'Prod'
-          entryPoints: 'Main.xaml'     
+  - 
           
