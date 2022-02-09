@@ -55,18 +55,5 @@ stages:
               folderName: 'Shared'
               traceLevel: 'Verbose'
         
- # - stage: DeployPROD
- #   displayName: Deploy build artifact to PROD
- #   dependsOn: QARun
- #   condition: succeeded()
- #   jobs:
- #    - job: DeployPROD
-  #     pool: Prince
-  #     steps:
-   #    - task: UiPathDeploy@2
-   #      inputs:
-  #        orchestratorConnection: 'ConnectHR'
-   #       packagesPath: $(projectPackagePath)
-   #       folderName: 'Prod'
-   #       entryPoints: 'Main.xaml'     
+
           
